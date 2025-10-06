@@ -12,12 +12,11 @@ public class DivisionService {
     @Autowired
     private DivisionRepository divisionRepository;
 
-    public Division editarDivision(Long id, DivisionDTO dto) {
-        Division division = divisionRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("División no encontrada"));
-        division.setNombre(dto.getNombre());
-        division.setActivo(dto.isActivo());
-        return divisionRepository.save(division);
+    public void borrarDivision(Long id) {
+        if (!divisionRepository.existsById(id)) {
+            throw new RuntimeException("División no encontrada");
+        }
+        divisionRepository.deleteById(id);
     }
     
 }

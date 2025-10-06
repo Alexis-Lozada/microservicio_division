@@ -15,10 +15,10 @@ public class DivisionController {
     @Autowired
     private DivisionService divisionService;
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Division> editarDivision(@PathVariable Long id, @RequestBody DivisionDTO dto) {
-        Division actualizada = divisionService.editarDivision(id, dto);
-        return ResponseEntity.ok(actualizada);
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> borrarDivision(@PathVariable Long id) {
+        divisionService.borrarDivision(id);
+        return ResponseEntity.noContent().build();
     }
     
 }

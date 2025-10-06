@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import mx.edu.uteq.idgs12.microservicio_division.service.DivisionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/divisiones")
@@ -15,10 +16,9 @@ public class DivisionController {
     @Autowired
     private DivisionService divisionService;
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Division> editarDivision(@PathVariable Long id, @RequestBody DivisionDTO dto) {
-        Division actualizada = divisionService.editarDivision(id, dto);
-        return ResponseEntity.ok(actualizada);
+    @GetMapping
+    public ResponseEntity<List<Division>> buscarTodas() {
+        return ResponseEntity.ok(divisionService.buscarTodas());
     }
     
 }
